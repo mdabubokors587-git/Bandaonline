@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বান্দা অনলাইন মাদরাসা</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+  body {
+    background: linear-gradient(135deg,#0f5132,#198754,#20c997);
+    min-height:100vh; color:#fff; padding:20px;
+  }
+  header { text-align:center; padding:30px 10px; }
+  header h1 { font-size:28px; margin-bottom:8px; }
+  header p { font-size:14px; opacity:.9; }
+  .grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:16px; max-width:800px; margin:20px auto;
+  }
+  .card {
+    background:rgba(255,255,255,0.15); backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.25); border-radius:16px;
+    padding:24px 12px; text-align:center; cursor:pointer;
+    transition:transform .2s, background .2s;
+  }
+  .card:hover { transform:translateY(-5px); background:rgba(255,255,255,0.25); }
+  .card .icon { font-size:38px; margin-bottom:10px; }
+  .card .title { font-size:16px; font-weight:600; }
+
+  footer {
+    text-align:center;
+    padding:30px 15px 20px;
+    font-size:13px;
+    margin-top:30px;
+  }
+  .director {
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:16px;
+    padding:20px 15px;
+    max-width:500px;
+    margin:0 auto 20px;
+    line-height:1.8;
+  }
+  .director .label {
+    font-size:12px;
+    letter-spacing:1px;
+    opacity:.8;
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .director .name {
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:10px;
+    color:#fff8d6;
+  }
+  .director .info {
+    font-size:13px;
+    opacity:.95;
+    margin-bottom:4px;
+  }
+  .director .contact {
+    margin-top:10px;
+    font-size:14px;
+    font-weight:600;
+  }
+  .director .contact a {
+    color:#fff8d6;
+    text-decoration:none;
+    border-bottom:1px dashed rgba(255,248,214,0.6);
+  }
+  .copyright {
+    font-size:12px;
+    opacity:.7;
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>🕌 বান্দা অনলাইন মাদরাসা</h1>
+    <p>ইলম অর্জনের সহজ ঠিকানা</p>
+  </header>
+
+  <div class="grid">
+    <div class="card" onclick="openCat('images')">
+      <div class="icon">📷</div>
+      <div class="title">Images</div>
+    </div>
+    <div class="card" onclick="openCat('videos')">
+      <div class="icon">🎬</div>
+      <div class="title">Videos</div>
+    </div>
+    <div class="card" onclick="openCat('documents')">
+      <div class="icon">📄</div>
+      <div class="title">Documents</div>
+    </div>
+    <div class="card" onclick="openCat('software')">
+      <div class="icon">💻</div>
+      <div class="title">Software</div>
+    </div>
+    <div class="card" onclick="openCat('links')">
+      <div class="icon">🔗</div>
+      <div class="title">Favourite Links</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="director">
+      <p class="label">পরিচালক</p>
+      <p class="name">বান্দাহ আবুবকর সিদ্দিক</p>
+      <p class="info">ইমাম ও খতিব — বর্ডার সোনাপুর মাঝপাড়া, মুজিবনগর, মেহেরপুর</p>
+      <p class="info">শিক্ষক — আনন্দবাস মারকাযুল উলুম মাদরাসা</p>
+      <p class="contact">যোগাযোগ — <a href="tel:+8801943522985">+৮৮০ ১৯৪৩-৫২২৯৮৫</a></p>
+    </div>
+    <p class="copyright">© ২০২৬ বান্দা অনলাইন মাদরাসা — সকল অধিকার সংরক্ষিত</p>
+  </footer>
+
+<script>
+  function openCat(name){
+    alert(name + " ক্যাটাগরি শীঘ্রই আসছে ইনশাআল্লাহ!");
+  }
+</script>
+</body>
+</html>
