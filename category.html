@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বান্দা অনলাইন মাদরাসা</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; -webkit-tap-highlight-color:transparent; }
+  body {
+    background: linear-gradient(135deg,#0f5132,#198754,#20c997);
+    min-height:100vh; color:#fff; padding:16px;
+  }
+  .topbar {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 0 20px;
+    max-width:600px;
+    margin:0 auto;
+  }
+  .back {
+    background:rgba(255,255,255,0.18);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:12px;
+    padding:8px 14px;
+    color:#fff;
+    font-size:16px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .back:active { background:rgba(255,255,255,0.3); }
+  .header-info { text-align:center; padding:10px 0 24px; }
+  .header-info .icon { font-size:54px; margin-bottom:10px; }
+  .header-info h1 { font-size:24px; margin-bottom:6px; }
+  .header-info p { font-size:13px; opacity:.9; }
+
+  .empty {
+    background:rgba(255,255,255,0.12);
+    border:1px dashed rgba(255,255,255,0.35);
+    border-radius:18px;
+    padding:40px 20px;
+    text-align:center;
+    max-width:520px;
+    margin:20px auto;
+  }
+  .empty .emoji { font-size:48px; margin-bottom:14px; }
+  .empty .title { font-size:18px; font-weight:600; margin-bottom:8px; }
+  .empty .desc { font-size:14px; opacity:.85; line-height:1.7; }
+
+  footer {
+    text-align:center;
+    padding:30px 12px 16px;
+    font-size:12px;
+    opacity:.7;
+    margin-top:20px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="back" href="index.html">← পিছনে</a>
+  </div>
+
+  <div class="header-info">
+    <div class="icon" id="catIcon">📷</div>
+    <h1 id="catTitle">Images</h1>
+    <p id="catDesc">ছবির সংগ্রহ</p>
+  </div>
+
+  <div class="empty">
+    <div class="emoji">🌱</div>
+    <div class="title">শীঘ্রই আসছে ইনশাআল্লাহ</div>
+    <div class="desc">এই ক্যাটাগরিতে খুব শীঘ্রই কনটেন্ট যোগ করা হবে।<br>আপাতত আপনি অন্য ক্যাটাগরি ঘুরে দেখুন।</div>
+  </div>
+
+  <footer>
+    © ২০২৬ বান্দা অনলাইন মাদরাসা
+  </footer>
+
+<script>
+  const categories = {
+    images:    { icon:'📷', title:'Images',           desc:'ছবির সংগ্রহ' },
+    videos:    { icon:'🎬', title:'Videos',           desc:'ভিডিও লেকচার ও দারস' },
+    documents: { icon:'📄', title:'Documents',        desc:'বই, নোট ও পিডিএফ' },
+    software:  { icon:'💻', title:'Software',         desc:'ইসলামিক অ্যাপ ও সফটওয়্যার' },
+    links:     { icon:'🔗', title:'Favourite Links',  desc:'প্রিয় ওয়েবসাইট ও রিসোর্স' }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type') || 'images';
+  const cat = categories[type] || categories.images;
+
+  document.getElementById('catIcon').textContent = cat.icon;
+  document.getElementById('catTitle').textContent = cat.title;
+  document.getElementById('catDesc').textContent = cat.desc;
+  document.title = cat.title + ' — বান্দা অনলাইন মাদরাসা';
+</script>
+
+</body>
+</html>
