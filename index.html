@@ -2,128 +2,338 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>বান্দা অনলাইন মাদরাসা</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#198754">
+<meta name="theme-color" content="#0a3622">
 <link rel="icon" type="image/jpeg" href="logo.jpg">
 <link rel="apple-touch-icon" href="logo.jpg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; -webkit-tap-highlight-color:transparent; }
-  body {
-    background: linear-gradient(135deg,#0f5132,#198754,#20c997);
-    min-height:100vh; color:#fff; padding:16px;
+  * {
+    margin:0; padding:0; box-sizing:border-box;
+    font-family:'Segoe UI', 'Noto Sans Bengali', sans-serif;
+    -webkit-tap-highlight-color:transparent;
   }
-  header { text-align:center; padding:24px 10px 18px; }
-  header .logo { font-size:42px; margin-bottom:6px; }
-  header h1 { font-size:24px; margin-bottom:6px; }
-  header p { font-size:13px; opacity:.9; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    color:#fff;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(212,175,55,0.15), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(212,175,55,0.12), transparent 40%),
+      linear-gradient(180deg, #0a3622 0%, #0f5132 25%, #198754 55%, #0f5132 85%, #0a3622 100%);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  /* --- হেডার --- */
+  .header {
+    text-align: center;
+    padding: 4px 8px 8px;
+    flex-shrink: 0;
+  }
+  .bismillah {
+    font-size: 20px;
+    color: #f5d76e;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 12px rgba(212,175,55,0.5);
+    letter-spacing: 2px;
+  }
+  .divider {
+    width: 90px; height: 1.5px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    margin: 6px auto 10px;
+    position: relative;
+  }
+  .divider::before {
+    content:'✦';
+    position:absolute; top:-8px; left:50%;
+    transform:translateX(-50%);
+    color:#d4af37; font-size:9px;
+    background:#0f5132; padding:0 6px;
+  }
+
+  .logo-circle {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    padding: 3px;
+    background: linear-gradient(135deg, #d4af37, #fff8d6, #d4af37);
+    box-shadow: 0 0 20px rgba(212,175,55,0.5), 0 0 40px rgba(212,175,55,0.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-circle img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+  }
+
+  .title-en {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #f5d76e;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    font-weight: 500;
+  }
+  .title-bn {
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .tagline {
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
+  /* --- ক্যাটাগরি সেকশন --- */
+  .category-section {
+    max-width: 520px;
+    margin: 6px auto 0;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #f5d76e;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 0 30px;
+  }
+  .section-title::before,
+  .section-title::after {
+    content:'';
+    position:absolute;
+    top:50%;
+    width: 25px; height:1px;
+    background: linear-gradient(90deg, transparent, #d4af37);
+  }
+  .section-title::before { left: 0; }
+  .section-title::after { right: 0; transform: scaleX(-1); }
 
   .grid {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-    max-width:520px;
-    margin:16px auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
   .card {
-    background:rgba(255,255,255,0.15);
-    border:1px solid rgba(255,255,255,0.25);
-    border-radius:18px;
-    padding:22px 10px;
-    text-align:center;
-    cursor:pointer;
-    transition:transform .15s, background .15s;
-    text-decoration:none;
-    color:#fff;
-    display:block;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(212,175,55,0.45);
+    border-radius: 12px;
+    padding: 8px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform .15s;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
   }
-  .card:active { transform:scale(0.96); background:rgba(255,255,255,0.28); }
-  .card .icon { font-size:40px; margin-bottom:10px; }
-  .card .title { font-size:15px; font-weight:600; }
-
+  .card:active {
+    transform: scale(0.96);
+    background: rgba(212,175,55,0.20);
+  }
+  .card .icon {
+    font-size: 22px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+  .card .title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+  }
   .card.full { grid-column: span 2; }
 
-  footer {
-    text-align:center;
-    padding:24px 12px 16px;
-    font-size:13px;
-    margin-top:24px;
+  /* --- পরিচালক সেকশন --- */
+  .director-section {
+    max-width: 520px;
+    margin: 10px auto 0;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .director {
-    background:rgba(255,255,255,0.12);
-    border:1px solid rgba(255,255,255,0.25);
-    border-radius:18px;
-    padding:20px 15px;
-    max-width:500px;
-    margin:0 auto 18px;
-    line-height:1.8;
+  .director-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.06));
+    border: 1.5px solid rgba(212,175,55,0.4);
+    border-radius: 14px;
+    padding: 12px 12px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
   }
-  .director .label {
-    font-size:12px;
-    letter-spacing:1px;
-    opacity:.8;
-    text-transform:uppercase;
-    margin-bottom:6px;
+  .director-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #d4af37;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    position: relative;
+    display: inline-block;
+    padding: 0 14px;
   }
-  .director .name {
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:10px;
-    color:#fff8d6;
+  .director-label::before,
+  .director-label::after {
+    content:'✦';
+    position:absolute;
+    top:0;
+    color:#d4af37;
+    font-size:8px;
   }
-  .director .info { font-size:13px; opacity:.95; margin-bottom:4px; }
-  .director .contact { margin-top:10px; font-size:14px; font-weight:600; }
-  .director .contact a {
-    color:#fff8d6;
-    text-decoration:none;
-    border-bottom:1px dashed rgba(255,248,214,0.6);
+  .director-label::before { left:-4px; }
+  .director-label::after { right:-4px; }
+
+  .director-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f5d76e;
+    margin: 4px 0 8px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
   }
-  .copyright { font-size:12px; opacity:.7; margin-top:10px; }
+  .director-info {
+    font-size: 11px;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 3px;
+    line-height: 1.5;
+  }
+  .director-info .label {
+    color: #d4af37;
+    font-weight: 600;
+  }
+  .contact-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 7px 18px;
+    background: linear-gradient(135deg, #d4af37, #b8941f);
+    color: #0a3622;
+    font-weight: 700;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 12px;
+    box-shadow: 0 3px 12px rgba(212,175,55,0.4);
+  }
+  .contact-btn:active {
+    transform: scale(0.96);
+  }
+
+  /* --- About বাটন --- */
+  .about-row {
+    text-align: center;
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .about-btn {
+    display: inline-block;
+    padding: 6px 22px;
+    background: rgba(212,175,55,0.15);
+    border: 1.5px solid rgba(212,175,55,0.5);
+    border-radius: 20px;
+    color: #f5d76e;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: background .2s;
+  }
+  .about-btn:active {
+    background: rgba(212,175,55,0.3);
+  }
+
+  /* --- ফুটার --- */
+  .footer {
+    text-align: center;
+    padding: 6px 8px 2px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
 </style>
 </head>
 <body>
-  <header>
-    <div class="logo">🕌</div>
-    <h1>বান্দা অনলাইন মাদরাসা</h1>
-    <p>ইলম অর্জনের সহজ ঠিকানা</p>
+
+  <!-- হেডার -->
+  <header class="header">
+    <div class="bismillah">﷽</div>
+    <div class="divider"></div>
+
+    <div class="logo-circle">
+      <img src="logo.jpg" alt="বান্দা অনলাইন মাদরাসা">
+    </div>
+
+    <div class="title-en">Banda Online Madrasa</div>
+    <h1 class="title-bn">বান্দা অনলাইন মাদরাসা</h1>
+    <p class="tagline">ইলম অর্জনের সহজ ঠিকানা</p>
   </header>
 
-  <div class="grid">
-    <a class="card" href="category.html?type=images">
-      <div class="icon">📷</div>
-      <div class="title">Images</div>
-    </a>
-    <a class="card" href="category.html?type=videos">
-      <div class="icon">🎬</div>
-      <div class="title">Videos</div>
-    </a>
-    <a class="card" href="category.html?type=documents">
-      <div class="icon">📄</div>
-      <div class="title">Documents</div>
-    </a>
-    <a class="card" href="category.html?type=software">
-      <div class="icon">💻</div>
-      <div class="title">Software</div>
-    </a>
-    <a class="card full" href="category.html?type=links">
-      <div class="icon">🔗</div>
-      <div class="title">Favourite Links</div>
-    </a>
+  <!-- ক্যাটাগরি সেকশন -->
+  <section class="category-section">
+    <h2 class="section-title">প্রবেশ করুন</h2>
+
+    <div class="grid">
+      <a class="card" href="category.html?type=images">
+        <span class="icon">📷</span>
+        <span class="title">Images</span>
+      </a>
+      <a class="card" href="category.html?type=videos">
+        <span class="icon">🎬</span>
+        <span class="title">Videos</span>
+      </a>
+      <a class="card" href="category.html?type=documents">
+        <span class="icon">📄</span>
+        <span class="title">Documents</span>
+      </a>
+      <a class="card" href="category.html?type=software">
+        <span class="icon">💻</span>
+        <span class="title">Software</span>
+      </a>
+      <a class="card full" href="category.html?type=links">
+        <span class="icon">🔗</span>
+        <span class="title">Favourite Links</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- পরিচালক সেকশন -->
+  <section class="director-section">
+    <div class="director-card">
+      <div class="director-label">পরিচালক</div>
+      <div class="director-name">বান্দাহ আবুবকর সিদ্দিক</div>
+      <div class="director-info"><span class="label">ইমাম ও খতিব</span> — বর্ডার সোনাপুর মাঝপাড়া, মুজিবনগর, মেহেরপুর</div>
+      <div class="director-info"><span class="label">শিক্ষক</span> — আনন্দবাস মারকাযুল উলুম মাদরাসা</div>
+      <a class="contact-btn" href="tel:+8801943522985">📞 যোগাযোগ করুন</a>
+    </div>
+  </section>
+
+  <!-- About বাটন -->
+  <div class="about-row">
+    <a class="about-btn" href="about.html">📖 পরিচিতি</a>
   </div>
 
-  <footer>
-    <div class="director">
-      <p class="label">পরিচালক</p>
-      <p class="name">বান্দাহ আবুবকর সিদ্দিক</p>
-      <p class="info">ইমাম ও খতিব — বর্ডার সোনাপুর মাঝপাড়া, মুজিবনগর, মেহেরপুর</p>
-      <p class="info">শিক্ষক — আনন্দবাস মারকাযুল উলুম মাদরাসা</p>
-      <p class="contact">যোগাযোগ — <a href="tel:+8801943522985">+৮৮০ ১৯৪৩-৫২২৯৮৫</a></p>
-    </div>
-    <p class="copyright">© ২০২৬ বান্দা অনলাইন মাদরাসা — সকল অধিকার সংরক্ষিত</p>
+  <!-- ফুটার -->
+  <footer class="footer">
+    © ২০২৬ বান্দা অনলাইন মাদরাসা
   </footer>
+
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');

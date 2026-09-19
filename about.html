@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>পরিচিতি — বান্দা অনলাইন মাদরাসা</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a3622">
+<link rel="icon" type="image/jpeg" href="logo.jpg">
+<link rel="apple-touch-icon" href="logo.jpg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+  * {
+    margin:0; padding:0; box-sizing:border-box;
+    font-family:'Segoe UI', 'Noto Sans Bengali', sans-serif;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  body {
+    min-height:100vh;
+    color:#fff;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(212,175,55,0.15), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(212,175,55,0.12), transparent 40%),
+      linear-gradient(180deg, #0a3622 0%, #0f5132 25%, #198754 55%, #0f5132 85%, #0a3622 100%);
+    background-attachment: fixed;
+    padding: 16px;
+    padding-bottom: 30px;
+  }
+
+  /* --- টপবার --- */
+  .topbar {
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .back-btn {
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(212,175,55,0.5);
+    border-radius: 12px;
+    padding: 8px 16px;
+    color: #f5d76e;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background .2s;
+  }
+  .back-btn:active {
+    background: rgba(212,175,55,0.25);
+  }
+
+  /* --- হেডিং --- */
+  .page-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+  .page-icon {
+    width: 70px; height: 70px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4af37, #fff8d6, #d4af37);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px;
+    box-shadow: 0 0 25px rgba(212,175,55,0.5);
+  }
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f5d76e;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .page-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+  .divider {
+    width: 140px; height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    margin: 16px auto;
+    position: relative;
+  }
+  .divider::before {
+    content:'✦';
+    position:absolute; top:-10px; left:50%;
+    transform:translateX(-50%);
+    color:#d4af37; font-size:12px;
+    background:#0f5132; padding:0 8px;
+  }
+
+  /* --- কনটেন্ট কার্ড --- */
+  .content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(212,175,55,0.35);
+    border-radius: 18px;
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content:'';
+    position:absolute;
+    top:-30px; right:-30px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(212,175,55,0.15), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #f5d76e;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .card-title .icon {
+    font-size: 22px;
+  }
+
+  .card p {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.85;
+    margin-bottom: 12px;
+    text-align: justify;
+    position: relative;
+    z-index: 2;
+  }
+  .card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .highlight {
+    color: #f5d76e;
+    font-weight: 600;
+  }
+
+  /* --- আরবি আয়াত / হাদিস বক্স --- */
+  .ayah-box {
+    background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+    border: 1.5px solid rgba(212,175,55,0.5);
+    border-radius: 16px;
+    padding: 20px 18px;
+    margin-bottom: 18px;
+    text-align: center;
+    position: relative;
+  }
+  .ayah-arabic {
+    font-size: 20px;
+    color: #f5d76e;
+    line-height: 1.9;
+    margin-bottom: 10px;
+    direction: rtl;
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+  }
+  .ayah-bangla {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 6px;
+  }
+  .ayah-ref {
+    font-size: 12px;
+    color: #d4af37;
+    font-weight: 600;
+  }
+
+  /* --- লিস্ট --- */
+  .feature-list {
+    list-style: none;
+    position: relative;
+    z-index: 2;
+  }
+  .feature-list li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.92);
+    padding: 8px 0 8px 30px;
+    position: relative;
+    line-height: 1.6;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    color: #d4af37;
+    font-size: 12px;
+  }
+
+  /* --- দুআ সেকশন --- */
+  .dua-section {
+    text-align: center;
+    background: linear-gradient(135deg, #0a3622, #145a32, #0a3622);
+    border: 2px solid #d4af37;
+    border-radius: 18px;
+    padding: 22px 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3), inset 0 0 20px rgba(212,175,55,0.1);
+  }
+  .dua-text {
+    font-size: 15px;
+    color: #f5d76e;
+    font-weight: 600;
+    line-height: 1.8;
+    margin-bottom: 8px;
+  }
+  .dua-amin {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+
+  /* --- যোগাযোগ কার্ড --- */
+  .contact-card {
+    text-align: center;
+    background: linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.06));
+    border: 1.5px solid rgba(212,175,55,0.4);
+    border-radius: 18px;
+    padding: 22px 18px;
+    margin-bottom: 18px;
+  }
+  .contact-card .director-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #d4af37;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .contact-card .director-name {
+    font-size: 19px;
+    font-weight: 700;
+    color: #f5d76e;
+    margin-bottom: 12px;
+  }
+  .contact-card .info {
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 5px;
+    line-height: 1.6;
+  }
+  .contact-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #d4af37, #b8941f);
+    color: #0a3622;
+    font-weight: 700;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+  }
+  .contact-btn:active { transform: scale(0.96); }
+
+  /* --- ফুটার --- */
+  .footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- টপবার -->
+  <div class="topbar">
+    <a class="back-btn" href="index.html">← পিছনে</a>
+  </div>
+
+  <!-- হেডিং -->
+  <div class="page-header">
+    <div class="page-icon">📖</div>
+    <h1 class="page-title">পরিচিতি</h1>
+    <p class="page-subtitle">বান্দা অনলাইন মাদরাসা সম্পর্কে</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- কনটেন্ট -->
+  <div class="content">
+
+    <!-- আরবি আয়াত -->
+    <div class="ayah-box">
+      <div class="ayah-arabic">اِقْرَأْ بِاسْمِ رَبِّكَ الَّذِیْ خَلَقَ</div>
+      <div class="ayah-bangla">"পড়ুন আপনার রবের নামে, যিনি সৃষ্টি করেছেন।"</div>
+      <div class="ayah-ref">— সূরা আল-আলাক : ১</div>
+    </div>
+
+    <!-- জ্ঞানের গুরুত্ব -->
+    <div class="card">
+      <h2 class="card-title"><span class="icon">🌱</span> জ্ঞান মানুষের সবচেয়ে বড় সম্পদ</h2>
+      <p>
+        জ্ঞান মানুষের জীবনের সবচেয়ে বড় সম্পদ। আজকের এই আধুনিক যুগে জ্ঞান ছাড়া মানুষ কোনোভাবেই টিকতে পারবে না। <span class="highlight">জ্ঞানহীন মানুষ অন্ধকারে পথ হারানো পথিকের মতো</span> — সে নিজেও বিপদে পড়ে, আবার অন্যকেও বিপদে ফেলে।
+      </p>
+      <p>
+        যেখানে জ্ঞানের আলো নেই, সেখানে অজ্ঞতা, কুসংস্কার, অপরাধ আর দুঃখ-কষ্ট ঘরে ঘরে। সন্তান-সন্ততি বিপথে যায়, পরিবার ভেঙে পড়ে, সমাজ ধ্বংস হয়।
+      </p>
+      <p>
+        তাই জ্ঞান অর্জন করা প্রতিটি মানুষের জন্য অপরিহার্য — <span class="highlight">বিশেষ করে দ্বীনি জ্ঞান</span>, যা মানুষকে সঠিক পথ দেখায়, আল্লাহর সাথে সম্পর্ক গড়ে দেয় এবং দুনিয়া ও আখিরাতে সফল করে।
+      </p>
+    </div>
+
+    <!-- আমাদের লক্ষ্য -->
+    <div class="card">
+      <h2 class="card-title"><span class="icon">✨</span> আমাদের লক্ষ্য</h2>
+      <p>
+        আমি এই সাইটটি তৈরি করেছি <span class="highlight">মানুষের সঠিক দ্বীন পালন এবং আমল করার সহজ পথ</span> হিসেবে। এখানে আপনি পাবেন —
+      </p>
+      <ul class="feature-list">
+        <li>📖 ইসলামিক জ্ঞানের বিভিন্ন রিসোর্স</li>
+        <li>🎬 দ্বীনি ভিডিও লেকচার ও দারস</li>
+        <li>📄 প্রয়োজনীয় বই, নোট ও ডকুমেন্ট</li>
+        <li>💻 ইসলামিক সফটওয়্যার ও অ্যাপ</li>
+        <li>🔗 উপকারী লিংক ও অনলাইন রিসোর্স</li>
+      </ul>
+      <p style="margin-top:14px;">
+        সবকিছু এক জায়গায় — <span class="highlight">সম্পূর্ণ ফ্রিতে, সবার জন্য।</span>
+      </p>
+    </div>
+
+    <!-- দুআ -->
+    <div class="dua-section">
+      <div class="dua-text">
+        এই সাইটটি যেন আল্লাহর রাহমতে আপনার দ্বীনি জ্ঞান অর্জনের একটি সহজ মাধ্যম হয়ে ওঠে — এই দোয়াই করি।
+      </div>
+      <div class="dua-amin">আল্লাহ আমাদের সবাইকে সঠিক পথে চলার তাওফিক দান করুন। আমিন।</div>
+    </div>
+
+    <!-- যোগাযোগ -->
+    <div class="contact-card">
+      <div class="director-label">পরিচালক</div>
+      <div class="director-name">বান্দাহ আবুবকর সিদ্দিক</div>
+      <div class="info">ইমাম ও খতিব — বর্ডার সোনাপুর মাঝপাড়া, মুজিবনগর, মেহেরপুর</div>
+      <div class="info">শিক্ষক — আনন্দবাস মারকাযুল উলুম মাদরাসা</div>
+      <a class="contact-btn" href="tel:+8801943522985">📞 যোগাযোগ করুন</a>
+    </div>
+
+  </div>
+
+  <!-- ফুটার -->
+  <div class="footer">
+    © ২০২৬ বান্দা অনলাইন মাদরাসা
+  </div>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
+</body>
+</html>
